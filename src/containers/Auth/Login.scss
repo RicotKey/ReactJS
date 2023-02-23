@@ -1,0 +1,85 @@
+.login-background{
+    height: 100vh;
+    background: linear-gradient(135deg, rgb(246, 182, 234) 0%,rgb(203, 236, 126) 100%);
+    .login-container{
+        width: 400px;
+        background: white;
+        border-radius: 10px;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        height: 450px;
+        .login-content{
+            padding: 15px;
+            .login-text{
+                text-align: center;
+                font-weight: 600;
+                font-size: 24px;
+                padding-top: 10px;
+
+            }
+            .login-input{
+                margin: 7px 0;
+                .custom-ipnut-password{
+                    position: relative;
+                    i{
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                        cursor: pointer;
+                    }
+                }
+               
+                label{
+                    margin-bottom: 5px;
+                }
+            }
+            .btn-login{
+                width: 100%;
+                margin: 10px 0;
+                height: 35px;
+                border-radius: 17px;
+                outline: none;
+                border: none;
+                background:linear-gradient(135deg, rgb(246, 182, 234) 0%,rgb(203, 236, 126) 100%); 
+                color: white;
+                font-size: 16px;
+            }
+            .fogot-password{
+                font-size: 12px;
+            }
+            .social-login{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 10px;
+               .google{
+                    background-color: #DD4B39;
+                    border-radius: 50%;
+                    font-size: 30px;
+                    height: 50px;
+                    width: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    margin-right: 10px;
+               }
+               .facebook{
+                    background-color:#0A82ED;
+                    border-radius: 50%;
+                    font-size: 30px;
+                    height: 50px;
+                    width: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+               }
+            }
+        }
+    }
+}
