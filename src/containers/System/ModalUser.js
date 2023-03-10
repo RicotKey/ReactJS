@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import { emitter } from '../../utils/emitter';
 class ModalUser extends Component {
 
     constructor(props){
@@ -14,8 +14,20 @@ class ModalUser extends Component {
             lastName: '',
             address: ''
         }
+       this.listenToEmiter();
     }
 
+   listenToEmiter(){
+        emitter.on('EVENT_CLEAR_MODAL_DATA',() =>{
+            this.setState({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                address: ''
+            })
+        })
+   }
 
     componentDidMount() {
     }
@@ -38,7 +50,7 @@ class ModalUser extends Component {
         for(let i =0; i<arrInput.length; i++){
             if(!this.state[arrInput[i]]){
                 isValid = false;
-                alert('Parameter Missing: ' + arrInput[i]);
+                alert(arrInput[i] + ' missing: ');
                 break;
             }
 
@@ -50,8 +62,11 @@ class ModalUser extends Component {
         let isValid = this.checkValideInput();
         if(isValid){
             this.props.createNewUser(this.state)
+            console.log(this.props.isClear)
+         
+            
         }
-        
+     
     }
     render() {
         return (
