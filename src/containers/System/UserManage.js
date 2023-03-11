@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import {getAllUser, createNewUserSV, deleteUser} from '../../services/userService'
+import {getAllUser, createNewUserSV, deleteUser, edtiUserSv} from '../../services/userService'
 import './UserManage.scss'
 import ModalUser from './ModalUser';
+import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
 import { flatMap } from 'lodash';
 
@@ -14,7 +15,8 @@ class UserManage extends Component {
         this.state = {  
             userArray : [],
             isOpenModalUser: false,
-            
+            isOpenModalEditUser: false,
+            editUser: {}
         }
     }   
 
@@ -38,6 +40,13 @@ class UserManage extends Component {
     toggleModalUser =()=>{
         this.setState({
             isOpenModalUser : !this.state.isOpenModalUser,
+            
+        })
+    }
+
+    toggleModalEditUser =()=>{
+        this.setState({
+            isOpenModalEditUser: !this.state.isOpenModalEditUser
         })
     }
 
@@ -58,7 +67,33 @@ class UserManage extends Component {
             console.log(error)
        }
     }
-   
+
+    handbleEditUser =(data)=>{
+        this.setState({
+            isOpenModalEditUser : true,
+            editUser : data
+        })
+    }
+    doEditUser=async(data)=>{
+        try {
+            let response = await edtiUserSv(data);
+            if(response && response.errCode !== 0){
+                alert(response.message)
+            }else{
+                await this.getAllUser();
+                this.setState({
+                    isOpenModalEditUser : false,
+                    
+                })
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+        
+
+
+    }
     handbleDeleteUser = async (user)=>{
         try {
            
@@ -85,6 +120,13 @@ class UserManage extends Component {
                     createNewUser={this.createNewUser}
                     
                 />
+                {this.state.isOpenModalEditUser &&
+                <ModalEditUser
+                    isOpen={this.state.isOpenModalEditUser}
+                    tooggleFromManage={this.toggleModalEditUser}
+                    editUser={this.state.editUser}
+                    saveUser={this.doEditUser}
+                />}
                 <div className='title text-center'>Manage User</div>
                 <div className="mx-1">
                     <button className="btn btn-primary px-3" onClick={()=>this.handbleAddNewUser()}><i className="fas fa-plus"></i> Add new user</button>   
@@ -108,7 +150,7 @@ class UserManage extends Component {
                                     <td>{item.lastName}</td>
                                     <td>{item.address}</td>
                                     <td>
-                                        <button className='btn-edit'><i className="fas fa-edit"></i></button>
+                                        <button className='btn-edit'><i className="fas fa-edit" onClick={()=>{this.handbleEditUser(item)}}></i></button>
                                         <button className='btn-delete' onClick={()=>{this.handbleDeleteUser(item)}}><i className="fas fa-trash"></i></button>
                                     </td>
                                 

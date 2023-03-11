@@ -16,4 +16,8 @@ const deleteUser = (id) => {
     return axios.delete('/api/v1/delete-user', {data:{id: id}});
 }
 
-export {handleLoginApi, getAllUser, createNewUserSV, deleteUser}
+const edtiUserSv = (data) =>{
+    return axios.put('/api/v1/edit-user', data)
+}
+
+export {handleLoginApi, getAllUser, createNewUserSV, deleteUser, edtiUserSv}
