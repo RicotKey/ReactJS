@@ -15,7 +15,7 @@ class About extends Component {
                 </div>
                 <div className='section-about-content'>
                     <div className='content-left'>
-                    <iframe width="100%" height="400px" src="https://www.youtube.com/embed/lxUKyGoBp_U" title="Hoa Cưới (H2O Remix) - Đạt Long Vinh | Rồi Người Rời Bước Thật Mau Mặc Vào Tà Áo Nàng Dâu Remix" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="100%" height="400px" src="https://www.youtube.com/embed/lxUKyGoBp_U" title="Hoa Cưới (H2O Remix) - Đạt Long Vinh | Rồi Người Rời Bước Thật Mau Mặc Vào Tà Áo Nàng Dâu Remix" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                     </div>
                     
                     <div className='content-right'>
