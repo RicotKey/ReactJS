@@ -14,8 +14,12 @@ const adminReducer = (state = initialState, action) => {
             }
 
         case actionTypes.FETCH_SUCCESS:
+
+            let copyState = { ...state };
+            copyState.genders = action.data;
+
             return {
-                ...state,
+                ...copyState,
             }
 
         case actionTypes.FETCH_FAILED:
