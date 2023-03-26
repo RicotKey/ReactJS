@@ -36,5 +36,24 @@
             "handbook": "Handbooks",
             "manage-handbook": "Manage handbooks"
         }
+    },
+    "manage":{
+        "user":{
+            "title": "Create new user by redux",
+            "subtitle": "Enter information",
+            "email": "Email",
+            "password": "Password",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "address": "Address",
+            "phonenumber": "Phone number",
+            "gender": "Gender",
+            "position": "Position",
+            "roleid": "Role",
+            "image": "Image",
+            "save": "Save"
+
+
+        }
     }
 }

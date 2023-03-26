@@ -35,5 +35,25 @@
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
         }
+    },
+    "manage":{
+        "user":{
+            "title": " Thêm mới người dùng by Redux",
+            "subtitle": "Nhập thông tin",
+            "email": "Email",
+            "password": "Mật khẩu",
+            "firstName": "Tên",
+            "lastName": "Họ",
+            "address": "Địa chỉ",
+            "phonenumber": "Số điện thoại",
+            "gender": "Giới tính",
+            "position": "Chức vụ",
+            "roleid": "Quyền",
+            "image": "Ảnh",
+            "choose": "---Chọn---",
+            "save": "Lưu"
+
+
+        }
     }
 }

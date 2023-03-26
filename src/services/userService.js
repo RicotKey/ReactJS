@@ -20,4 +20,8 @@ const edtiUserSv = (data) =>{
     return axios.put('/api/v1/edit-user', data)
 }
 
-export {handleLoginApi, getAllUser, createNewUserSV, deleteUser, edtiUserSv}
+const getAllCodeService = (inputType)=>{
+    return axios.get(`/api/v1//allcodes?type=${inputType}`);
+}
+
+export {handleLoginApi, getAllUser, createNewUserSV, deleteUser, edtiUserSv, getAllCodeService}
