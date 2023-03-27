@@ -1,17 +1,17 @@
 {
-    "homeheader":{
+    "homeheader": {
         "specialty": "Chuyên Khoa",
-        "findspecialty":"Tìm bác sĩ theo chuyên khoa",
+        "findspecialty": "Tìm bác sĩ theo chuyên khoa",
         "facilities": "Cơ sở y tế",
         "hospital": "Chọn bệnh viện",
         "doctor": "Bác sĩ",
         "choosedoctor": "Chọn bác sĩ giỏi",
         "package": "Gói khám",
         "general": "Khám sức khỏe tổng quát",
-        "support":"Hỗ trợ",
-        "welcome":"Xin chào, "
+        "support": "Hỗ trợ",
+        "welcome": "Xin chào, "
     },
-    "banner":{
+    "banner": {
         "title1": "NỀN TẢNG Y TẾ",
         "title2": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
         "text-child1": "Khám chuyên khoa",
@@ -22,12 +22,13 @@
         "text-child6": "Khám nha khoa"
     },
     "menu": {
-        "admin":{
+        "admin": {
             "manage-user": "Người dùng",
             "manage-doctor": "Quản lý bác sĩ",
             "manage-admin": "Quản lý admin",
             "crud": "CRUD user",
             "crud-redux": "CRUD Redux",
+            "list-user": "Danh sách người dùng",
             "clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng khám",
             "specialty": "Chuyên khoa",
@@ -36,8 +37,8 @@
             "manage-handbook": "Quản lý cẩm nang"
         }
     },
-    "manage":{
-        "user":{
+    "manage": {
+        "user": {
             "title": " Thêm mới người dùng by Redux",
             "subtitle": "Nhập thông tin",
             "email": "Email",
@@ -52,8 +53,6 @@
             "image": "Ảnh",
             "choose": "---Chọn---",
             "save": "Lưu"
-
-
         }
     }
 }

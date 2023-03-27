@@ -70,6 +70,24 @@ class UserRedux extends Component {
                 role: allRoles && allRoles.length > 0 ? allRoles[0].key : ''
             })
         }
+
+        if (prevProps.users !== this.props.users) {
+            let allGenders = this.props.genderstoRedux;
+            let allPositions = this.props.positionstoRedux;
+            let allRoles = this.props.rolestoRedux
+            this.setState({
+                email: '',
+                password: '',
+                firstname: '',
+                lastname: '',
+                phonenumber: '',
+                address: '',
+                gender: allGenders && allGenders.length > 0 ? allGenders[0].key : '',
+                position: allPositions && allPositions.length > 0 ? allPositions[0].key : '',
+                role: allRoles && allRoles.length > 0 ? allRoles[0].key : '',
+                avatar: '',
+            })
+        }
     }
 
     openPreviewImage = () => {
@@ -98,6 +116,8 @@ class UserRedux extends Component {
             role: this.state.role,
             position: this.state.position
         })
+
+        this.props.fetchUserRedux()
     }
 
     checkValidateInput = () => {
@@ -267,7 +287,8 @@ const mapStateToProps = state => {
         genderstoRedux: state.admin.genders,
         positionstoRedux: state.admin.positions,
         rolestoRedux: state.admin.roles,
-        isLoading: state.admin.isLoading
+        isLoading: state.admin.isLoading,
+        users: state.admin.users
     };
 };
 
@@ -277,7 +298,10 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
-        createNewUser: (data) => dispatch(actions.createNewUser(data))
+        createNewUser: (data) => dispatch(actions.createNewUser(data)),
+        fetchUserRedux: () => dispatch(actions.fetchAllUserStart())
+
+
     };
 };
 

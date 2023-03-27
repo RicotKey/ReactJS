@@ -1,17 +1,17 @@
 {
-    "homeheader":{
+    "homeheader": {
         "specialty": "Specialization",
-        "findspecialty":"Find a doctor by specialty",
+        "findspecialty": "Find a doctor by specialty",
         "facilities": "Health Facilities",
         "hospital": "Choose a hospital",
         "doctor": "Doctor",
         "choosedoctor": "Choose a good doctor",
         "package": "Checkup Package",
         "general": "General health check",
-        "support":"Support",
+        "support": "Support",
         "welcome": "Welcome, "
     },
-    "banner":{
+    "banner": {
         "title1": "MEDICAL FOUNDATION",
         "title2": "COMPREHENSIVE HEALTH CARE",
         "text-child1": "Specialized examination",
@@ -21,14 +21,14 @@
         "text-child5": "Mental health",
         "text-child6": "Dental examination"
     },
-
     "menu": {
-        "admin":{
+        "admin": {
             "manage-user": "Users System",
             "manage-doctor": "Manage doctors",
             "manage-admin": "Manage admins",
             "crud": "CRUD user",
             "crud-redux": "CRUD Redux",
+            "list-user": "List Users",
             "clinic": "Clinics",
             "manage-clinic": "Manage clinics",
             "specialty": "Specialties",
@@ -37,8 +37,8 @@
             "manage-handbook": "Manage handbooks"
         }
     },
-    "manage":{
-        "user":{
+    "manage": {
+        "user": {
             "title": "Create new user by redux",
             "subtitle": "Enter information",
             "email": "Email",
@@ -52,8 +52,6 @@
             "roleid": "Role",
             "image": "Image",
             "save": "Save"
-
-
         }
     }
 }
