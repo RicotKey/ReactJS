@@ -6,6 +6,7 @@ import './TableManageUser.scss'
 import * as actions from "../../../store/actions"
 import ModalEditUser from './ModalEditUser';
 import { times } from 'lodash';
+import { CRUD_ACTIONS } from '../../../utils';
 class TableManageUser extends Component {
 
     constructor(props) {
@@ -13,6 +14,7 @@ class TableManageUser extends Component {
         this.state = {
             users: [],
             isOpenModalEditUser: false,
+            editUser: {}
         }
     }
 
@@ -34,10 +36,9 @@ class TableManageUser extends Component {
 
     }
     handleEditUser = (user) => {
-        console.log("check", user)
         this.setState({
             isOpenModalEditUser: true,
-
+            editUser: user
         })
     }
     toggleModalEditUser = () => {
@@ -45,9 +46,11 @@ class TableManageUser extends Component {
             isOpenModalEditUser: !this.state.isOpenModalEditUser
         })
     }
+
+
+
     render() {
         let userArray = this.state.users;
-
         return (
             <React.Fragment>
                 <div className='container'>
@@ -56,10 +59,9 @@ class TableManageUser extends Component {
                             isOpen={this.state.isOpenModalEditUser}
                             tooggleFromManage={this.toggleModalEditUser}
                             editUser={this.state.editUser}
-                            saveUser={this.doEditUser}
                         />}
                     <div className='title'>
-                        <FormattedMessage id='manage.user.title' />
+                        <FormattedMessage id='manage.user.title-table' />
                     </div>
                     <div className='row'>
                         <div className='col-12 mt-3'>

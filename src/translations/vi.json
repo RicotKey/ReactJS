@@ -52,7 +52,11 @@
             "roleid": "Quyền",
             "image": "Ảnh",
             "choose": "---Chọn---",
-            "save": "Lưu"
+            "btn-save": "Tạo",
+            "title-table": "Danh sách người dùng",
+            "btn-update": "Lưu thay đổi",
+            "btn-close": "Đóng",
+            "edit-header": "Chỉnh sửa"
         }
     }
 }

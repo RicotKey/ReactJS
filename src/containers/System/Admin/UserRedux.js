@@ -171,7 +171,8 @@ class UserRedux extends Component {
                                 <input className='form-control' type="text"
 
                                     value={lastname}
-                                    onChange={(event) => { this.onChangeInput(event, 'lastname') }}></input>
+                                    onChange={(event) => { this.onChangeInput(event, 'lastname') }}
+                                ></input>
                             </div>
                             <div className='col-3'>
                                 <label><FormattedMessage id='manage.user.firstName' /></label>
@@ -210,7 +211,7 @@ class UserRedux extends Component {
                             </div>
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id='manage.user.gender' /></label>
-                                <select className="form-control"
+                                <select value={gender} className="form-control"
 
                                     onChange={(event) => { this.onChangeInput(event, 'gender') }}
                                 >
@@ -224,7 +225,7 @@ class UserRedux extends Component {
                             </div>
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id='manage.user.position' /></label>
-                                <select className="form-control"
+                                <select value={position} className="form-control"
 
                                     onChange={(event) => { this.onChangeInput(event, 'position') }}
                                 >
@@ -238,7 +239,7 @@ class UserRedux extends Component {
                             </div>
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id='manage.user.roleid' /></label>
-                                <select className="form-control"
+                                <select value={role} className="form-control"
 
                                     onChange={(event) => { this.onChangeInput(event, 'role') }}
                                 >
@@ -264,7 +265,7 @@ class UserRedux extends Component {
                             </div>
                             <div className='col-12 mt-3'>
 
-                                <button className='btn btn-primary' onClick={() => this.handbleSaveUser()}><FormattedMessage id='manage.user.save' /></button>
+                                <button className='btn btn-primary' onClick={() => this.handbleSaveUser()}><FormattedMessage id='manage.user.btn-save' /></button>
                             </div>
                         </div>
                     </div>

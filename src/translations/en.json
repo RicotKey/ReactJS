@@ -51,7 +51,11 @@
             "position": "Position",
             "roleid": "Role",
             "image": "Image",
-            "save": "Save"
+            "btn-save": "Create",
+            "title-table": "Manage user table",
+            "btn-update": "Save change",
+            "btn-close": "Close",
+            "edit-header": "Edit"
         }
     }
 }
