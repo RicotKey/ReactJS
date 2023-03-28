@@ -13,6 +13,7 @@ class TableManageUser extends Component {
         super(props);
         this.state = {
             users: [],
+            imageBase: '',
             isOpenModalEditUser: false,
             editUser: {}
         }
@@ -36,6 +37,14 @@ class TableManageUser extends Component {
 
     }
     handleEditUser = (user) => {
+
+        if (user.image) {
+            this.setState({
+                imageBase64: new Buffer(user.image, 'base64').toString('binary')
+            })
+
+        }
+
         this.setState({
             isOpenModalEditUser: true,
             editUser: user
@@ -59,6 +68,7 @@ class TableManageUser extends Component {
                             isOpen={this.state.isOpenModalEditUser}
                             tooggleFromManage={this.toggleModalEditUser}
                             editUser={this.state.editUser}
+                            imageBase64={this.state.imageBase64}
                         />}
                     <div className='title'>
                         <FormattedMessage id='manage.user.title-table' />

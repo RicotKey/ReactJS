@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { getAllCodeService } from '../../../services/userService'
-import { CRUD_ACTIONS, dateFormat, LANGUAGE } from '../../../utils';
+import { CRUD_ACTIONS, dateFormat, LANGUAGE, CommonUtils } from '../../../utils';
 import * as actions from '../../../store/actions'
 import Carousel from 'react-images'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -39,7 +39,6 @@ class UserRedux extends Component {
         this.props.getRoleStart();
 
         let data = this.props.editUser
-        console.log("data: ", data)
         if (data && !flatMap.isEmpty) {
             this.setState({
                 id: data.id,
@@ -52,20 +51,21 @@ class UserRedux extends Component {
                 gender: data.gender,
                 position: data.positionid,
                 role: data.roleid,
-                avatar: '',
-
+                reviewImgURL: this.props.imageBase64
             })
         }
     }
 
-    handbleOnchangeImage = (event) => {
+    handbleOnchangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
         if (file) {
+            let base64 = await CommonUtils.getBase64(file);
+
             let url = URL.createObjectURL(file);
             this.setState({
                 reviewImgURL: url,
-                avatar: file
+                avatar: base64
 
             })
         }
@@ -108,6 +108,7 @@ class UserRedux extends Component {
                 position: '',
                 role: '',
                 avatar: '',
+                reviewImgURL: '',
             })
         }
     }
@@ -149,7 +150,10 @@ class UserRedux extends Component {
     }
 
 
+
     handleUpdateUser = () => {
+
+
         this.props.tooggleFromManage();
         this.props.editUserRedux({
             id: this.state.id,
@@ -162,7 +166,7 @@ class UserRedux extends Component {
             gender: this.state.gender,
             roleid: this.state.role,
             positionid: this.state.position,
-            // avatar: this.state.avatar
+            avatar: this.state.avatar
         })
     }
 

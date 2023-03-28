@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { getAllCodeService } from '../../../services/userService'
-import { dateFormat, LANGUAGE } from '../../../utils';
+import { dateFormat, LANGUAGE, CommonUtils } from '../../../utils';
 import * as actions from '../../../store/actions'
 import Carousel from 'react-images'
 import './UserRedux.scss'
@@ -35,14 +35,16 @@ class UserRedux extends Component {
         this.props.getRoleStart();
     }
 
-    handbleOnchangeImage = (event) => {
+    handbleOnchangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
         if (file) {
+            let base64 = await CommonUtils.getBase64(file);
+
             let url = URL.createObjectURL(file);
             this.setState({
                 reviewImgURL: url,
-                avatar: file
+                avatar: base64
 
             })
         }
@@ -86,6 +88,7 @@ class UserRedux extends Component {
                 position: allPositions && allPositions.length > 0 ? allPositions[0].key : '',
                 role: allRoles && allRoles.length > 0 ? allRoles[0].key : '',
                 avatar: '',
+                reviewImgURL: ''
             })
         }
     }
@@ -114,7 +117,8 @@ class UserRedux extends Component {
             phonenumber: this.state.phonenumber,
             gender: this.state.gender,
             role: this.state.role,
-            position: this.state.position
+            position: this.state.position,
+            avatar: this.state.avatar
         })
 
         this.props.fetchUserRedux()
