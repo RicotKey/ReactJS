@@ -1,4 +1,4 @@
-import { getAllCodeService, createNewUserSV, getAllUser, deleteUser, edtiUserSv } from '../../services/userService';
+import { getAllCodeService, createNewUserSV, getAllUser, deleteUser, edtiUserSv, getTopDoctor } from '../../services/userService';
 import actionTypes from './actionTypes';
 import { toast } from "react-toastify"
 // export const fetchStart = () => ({
@@ -126,6 +126,8 @@ export const fetchAllUserStart = () => {
         try {
 
             let res = await getAllUser('ALL');
+
+
             if (res && res.errCode === 0) {
                 dispatch(fetchAllUserSuccess(res.users.reverse()))
             } else {
@@ -208,3 +210,38 @@ export const editUserSuccess = () => ({
 export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAILED
 })
+
+
+
+export const fetchTopDoctorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopDoctor(6);
+            if (res && res.errCode === 0) {
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+                        doctors: res.data
+                    }
+                )
+            } else {
+
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_ALL_USERS_FAILED
+
+                    }
+                )
+            }
+        } catch (e) {
+
+            dispatch(
+                {
+                    type: actionTypes.FETCH_ALL_USERS_FAILED
+
+                }
+            )
+            console.log("FETCH_ALL_USERS_FAILED: ", e)
+        }
+    }
+}

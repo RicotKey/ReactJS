@@ -55,21 +55,21 @@ class UserRedux extends Component {
             let allGenders = this.props.genderstoRedux;
             this.setState({
                 genderAll: allGenders,
-                gender: allGenders && allGenders.length > 0 ? allGenders[0].key : ''
+                gender: allGenders && allGenders.length > 0 ? allGenders[0].keyMap : ''
             })
         }
         if (prevProps.positionstoRedux !== this.props.positionstoRedux) {
             let allPositions = this.props.positionstoRedux;
             this.setState({
                 positionAll: allPositions,
-                position: allPositions && allPositions.length > 0 ? allPositions[0].key : ''
+                position: allPositions && allPositions.length > 0 ? allPositions[0].keyMap : ''
             })
         }
         if (prevProps.rolestoRedux !== this.props.rolestoRedux) {
             let allRoles = this.props.rolestoRedux
             this.setState({
                 roleAll: allRoles,
-                role: allRoles && allRoles.length > 0 ? allRoles[0].key : ''
+                role: allRoles && allRoles.length > 0 ? allRoles[0].keyMap : ''
             })
         }
 
@@ -84,9 +84,9 @@ class UserRedux extends Component {
                 lastname: '',
                 phonenumber: '',
                 address: '',
-                gender: allGenders && allGenders.length > 0 ? allGenders[0].key : '',
-                position: allPositions && allPositions.length > 0 ? allPositions[0].key : '',
-                role: allRoles && allRoles.length > 0 ? allRoles[0].key : '',
+                gender: allGenders && allGenders.length > 0 ? allGenders[0].keyMap : '',
+                position: allPositions && allPositions.length > 0 ? allPositions[0].keyMap : '',
+                role: allRoles && allRoles.length > 0 ? allRoles[0].keyMap : '',
                 avatar: '',
                 reviewImgURL: ''
             })
@@ -127,7 +127,7 @@ class UserRedux extends Component {
     checkValidateInput = () => {
         let isValid = true;
         let arrCheck = ['email', 'password', 'firstname', 'lastname',
-            'phonenumber', 'address']
+            'phonenumber', 'address', 'avatar']
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
@@ -222,7 +222,7 @@ class UserRedux extends Component {
                                     {genders && genders.length > 0 &&
                                         genders.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>{language === LANGUAGE.VI ? item.valueVi : item.valueEn}</option>
+                                                <option key={index} value={item.keyMap}>{language === LANGUAGE.VI ? item.valueVi : item.valueEn}</option>
                                             )
                                         })}
                                 </select>
@@ -236,7 +236,7 @@ class UserRedux extends Component {
                                     {positions && positions.length > 0 &&
                                         positions.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>{language === LANGUAGE.VI ? item.valueVi : item.valueEn}</option>
+                                                <option key={index} value={item.keyMap}>{language === LANGUAGE.VI ? item.valueVi : item.valueEn}</option>
                                             )
                                         })}
                                 </select>
@@ -250,7 +250,7 @@ class UserRedux extends Component {
                                     {roles && positions.length > 0 &&
                                         roles.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>{language === LANGUAGE.VI ? item.valueVi : item.valueEn}</option>
+                                                <option key={index} value={item.keyMap}>{language === LANGUAGE.VI ? item.valueVi : item.valueEn}</option>
                                             )
                                         })}
                                 </select>
@@ -258,8 +258,8 @@ class UserRedux extends Component {
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id='manage.user.image' /></label>
                                 <div className='preview-img-container'>
-                                    <input id='previewImg' type='file' hidden onChange={(event) => this.handbleOnchangeImage(event)}></input>
-                                    <label className='label-upload' htmlFor='previewImg'>Tải ảnh <i className='fas fa-upload'></i></label>
+                                    <input id='image' type='file' hidden onChange={(event) => this.handbleOnchangeImage(event)}></input>
+                                    <label className='label-upload' htmlFor='image'>Tải ảnh <i className='fas fa-upload'></i></label>
                                     <div className='preview-image' style={{ backgroundImage: `url(${this.state.reviewImgURL})` }}
                                         onClick={() => this.openPreviewImage()}
                                     >

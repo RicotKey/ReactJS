@@ -47,7 +47,7 @@
         .section-customize{
             padding: 5px;
             .boder-customize{
-                border: 1px solid red;
+                border: 1px solid gray;
                 padding: 20px;
             }
         }  
@@ -83,7 +83,7 @@
                 }
 
                 &.section-outstanding-doctor{
-                    background-image: url('../../assets/outstandingdoctor/154433bs-le-thi-thu-hien.jpg');
+                    // background-image: url('../../assets/outstandingdoctor/154433bs-le-thi-thu-hien.jpg');
                     background-color: #eee;
                     background-size: contain;
                     width: 120px;
