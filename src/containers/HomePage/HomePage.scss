@@ -30,6 +30,9 @@
     }
 }
 
+.slick-disabled{
+    display: none !important;
+}
 .section-share{
     &.section-specialty{
         background: rgba(255, 255, 255, 1);

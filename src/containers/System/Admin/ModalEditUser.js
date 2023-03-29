@@ -8,7 +8,22 @@ import Carousel from 'react-images'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { flatMap } from 'lodash';
 import './UserRedux.scss'
-class UserRedux extends Component {
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+// import style manually
+import 'react-markdown-editor-lite/lib/index.css';
+
+// Register plugins if required
+// MdEditor.use(YOUR_PLUGINS_HERE);
+
+// Initialize a markdown parser
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
+// Finish!
+function handleEditorChange({ html, text }) {
+    console.log('handleEditorChange', html, text);
+}
+class ModalEditUser extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -307,11 +322,13 @@ class UserRedux extends Component {
 
                         }
                     </div>
+                    <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
                 </ModalBody>
                 <ModalFooter>
                     <Button className='px-3' color="primary" onClick={() => { this.handleUpdateUser() }}><FormattedMessage id='manage.user.btn-update' /></Button>{' '}
                     <Button className='px-3' color="secondary" onClick={() => { this.toggle() }}><FormattedMessage id='manage.user.btn-close' /></Button>
                 </ModalFooter>
+
             </Modal>
         )
     }
@@ -341,4 +358,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);

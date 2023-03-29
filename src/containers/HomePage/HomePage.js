@@ -15,30 +15,30 @@ class HomePage extends Component {
     render() {
         let settings = {
             dots: false,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1
-          };
+        };
         return (
-            
+
             <div>
-                <HomeHeader/>
-                <Specialty 
-                    settings = {settings}
+                <HomeHeader />
+                <Specialty
+                    settings={settings}
                 />
-                <MedicalFacility  
-                    settings = {settings}
+                <MedicalFacility
+                    settings={settings}
                 />
                 <OutStandingDoctor
-                    settings = {settings}
+                    settings={settings}
                 />
-                 <HandBook
-                    settings = {settings}
+                <HandBook
+                    settings={settings}
                 />
-                <About/>
-                <HomeFooter/>
-              
+                <About />
+                <HomeFooter />
+
             </div>
         );
     }
@@ -47,7 +47,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn    };
+        isLoggedIn: state.user.isLoggedIn
+    };
 };
 
 const mapDispatchToProps = dispatch => {

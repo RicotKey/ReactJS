@@ -7,6 +7,9 @@ import * as actions from "../../../store/actions"
 import ModalEditUser from './ModalEditUser';
 import { times } from 'lodash';
 import { CRUD_ACTIONS } from '../../../utils';
+import { LANGUAGE } from '../../../utils';
+
+
 class TableManageUser extends Component {
 
     constructor(props) {
@@ -60,8 +63,11 @@ class TableManageUser extends Component {
 
     render() {
         let userArray = this.state.users;
+        console.log('check: ', userArray)
+        let language = this.props.language
         return (
             <React.Fragment>
+
                 <div className='container'>
                     {this.state.isOpenModalEditUser &&
                         <ModalEditUser
@@ -74,24 +80,26 @@ class TableManageUser extends Component {
                         <FormattedMessage id='manage.user.title-table' />
                     </div>
                     <div className='row'>
-                        <div className='col-12 mt-3'>
+                        <div className='col-12 m-5'>
                             <table id='tableManageUser'>
                                 <tbody>
                                     <tr>
                                         <th>Email</th>
                                         <th>FirstName</th>
                                         <th>LastName</th>
-                                        <th>Address</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
 
                                     {userArray && userArray.length > 0 && userArray.map((item, index) => {
+                                        let roleVi = `${item.roleData.valueVi}`
+                                        let roleEn = `${item.roleData.valueEn}`
                                         return (
                                             <tr key={index}>
                                                 <td>{item.email}</td>
                                                 <td>{item.firstName}</td>
                                                 <td>{item.lastName}</td>
-                                                <td>{item.address}</td>
+                                                <td>{language === LANGUAGE.VI ? roleVi : roleEn}</td>
                                                 <td>
                                                     <button className='btn-edit' onClick={() => this.handleEditUser(item)}  ><i className="fas fa-edit" ></i></button>
                                                     <button className='btn-delete' onClick={() => this.handleDeleteUser(item)}><i className="fas fa-trash"></i></button>
@@ -106,6 +114,7 @@ class TableManageUser extends Component {
                         </div>
                     </div>
                 </div>
+
             </React.Fragment>
         );
     }
@@ -115,6 +124,7 @@ class TableManageUser extends Component {
 const mapStateToProps = state => {
     return {
         users: state.admin.users,
+        language: state.app.language
     };
 };
 

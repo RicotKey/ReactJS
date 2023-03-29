@@ -58,5 +58,11 @@
             "btn-close": "Đóng",
             "edit-header": "Chỉnh sửa"
         }
+    },
+    "homepage": {
+        "outstandingdoctor": {
+            "outstandingdoctor": "Bác sĩ nổi bật tuần qua",
+            "more-infor": "Xem thêm"
+        }
     }
 }
