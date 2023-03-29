@@ -1,7 +1,7 @@
 import {
     getAllCodeService, createNewUserSV, getAllUser,
     deleteUser, edtiUserSv, getTopDoctor, getAllDoctor,
-    saveInforDoctor
+    saveInforDoctor, getDetailInforDoctor
 } from '../../services/userService';
 import actionTypes from './actionTypes';
 import { toast } from "react-toastify"
@@ -314,6 +314,39 @@ export const saveDetailDoctor = (data) => {
                 }
             )
             console.log("SAVE_INFOR_DOCTOR_FAILED: ", e)
+        }
+    }
+}
+
+
+export const fetchInforDoctorStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getDetailInforDoctor(id);
+            if (res && res.errCode === 0) {
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_INFOR_DOCTOR_SUCCESS,
+                        detaildoctor: res.data
+                    }
+                )
+            } else {
+
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_INFOR_DOCTOR_FAILED
+                    }
+                )
+            }
+        } catch (e) {
+
+            dispatch(
+                {
+                    type: actionTypes.FETCH_INFOR_DOCTOR_FAILED
+
+                }
+            )
+            console.log("FETCH_INFOR_DOCTOR_FAILED: ", e)
         }
     }
 }

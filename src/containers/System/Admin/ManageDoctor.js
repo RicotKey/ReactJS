@@ -66,8 +66,8 @@ class ManageDoctor extends Component {
 
     handleEditorChange = ({ html, text }) => {
         this.setState({
-            contentHTML: text,
-            contentMarkdown: html,
+            contentHTML: html,
+            contentMarkdown: text,
         })
 
     }
