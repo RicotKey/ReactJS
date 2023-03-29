@@ -1,4 +1,8 @@
-import { getAllCodeService, createNewUserSV, getAllUser, deleteUser, edtiUserSv, getTopDoctor } from '../../services/userService';
+import {
+    getAllCodeService, createNewUserSV, getAllUser,
+    deleteUser, edtiUserSv, getTopDoctor, getAllDoctor,
+    saveInforDoctor
+} from '../../services/userService';
 import actionTypes from './actionTypes';
 import { toast } from "react-toastify"
 // export const fetchStart = () => ({
@@ -228,7 +232,7 @@ export const fetchTopDoctorStart = () => {
 
                 dispatch(
                     {
-                        type: actionTypes.FETCH_ALL_USERS_FAILED
+                        type: actionTypes.FETCH_TOP_DOCTORS_FAILED
 
                     }
                 )
@@ -237,11 +241,79 @@ export const fetchTopDoctorStart = () => {
 
             dispatch(
                 {
-                    type: actionTypes.FETCH_ALL_USERS_FAILED
+                    type: actionTypes.FETCH_TOP_DOCTORS_FAILED
 
                 }
             )
-            console.log("FETCH_ALL_USERS_FAILED: ", e)
+            console.log("FETCH_TOP_DOCTORS_FAILED: ", e)
+        }
+    }
+}
+
+export const fetchAllDoctorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctor();
+            if (res && res.errCode === 0) {
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+                        alldoctors: res.data
+                    }
+                )
+            } else {
+
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_ALL_DOCTORS_FAILED
+
+                    }
+                )
+            }
+        } catch (e) {
+
+            dispatch(
+                {
+                    type: actionTypes.FETCH_ALL_DOCTORS_FAILED
+
+                }
+            )
+            console.log("FETCH_ALL_DOCTORS_FAILED: ", e)
+        }
+    }
+}
+
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+
+            let res = await saveInforDoctor(data);
+            if (res && res.errCode === 0) {
+                toast.success("SAVE INFOR DOCTOR SUCCESSED!")
+                dispatch(
+                    {
+                        type: actionTypes.SAVE_INFOR_DOCTOR_SUCCESS,
+
+                    }
+                )
+            } else {
+                toast.error("SAVE INFOR DOCTOR FAILED!")
+                dispatch(
+                    {
+                        type: actionTypes.SAVE_INFOR_DOCTOR_FAILED
+
+                    }
+                )
+            }
+        } catch (e) {
+            toast.error("SAVE INFOR DOCTOR FAILED!")
+            dispatch(
+                {
+                    type: actionTypes.SAVE_INFOR_DOCTOR_FAILED
+
+                }
+            )
+            console.log("SAVE_INFOR_DOCTOR_FAILED: ", e)
         }
     }
 }
