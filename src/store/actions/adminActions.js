@@ -215,8 +215,6 @@ export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAILED
 })
 
-
-
 export const fetchTopDoctorStart = () => {
     return async (dispatch, getState) => {
         try {
@@ -347,6 +345,38 @@ export const fetchInforDoctorStart = (id) => {
                 }
             )
             console.log("FETCH_INFOR_DOCTOR_FAILED: ", e)
+        }
+    }
+}
+
+export const fetchAllScheduleTimeStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('TIME');
+            if (res && res.errCode === 0) {
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+                        datatime: res.data
+                    }
+                )
+            } else {
+
+                dispatch(
+                    {
+                        type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED
+                    }
+                )
+            }
+        } catch (e) {
+
+            dispatch(
+                {
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED
+
+                }
+            )
+            console.log("FETCH_ALLCODE_SCHEDULE_TIME_FAILED: ", e)
         }
     }
 }

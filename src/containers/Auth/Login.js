@@ -13,91 +13,98 @@ class Login extends Component {
         super(props);
         this.state = {
             email: '',
-            password: '',  
+            password: '',
             isshowpassword: false,
             errMessage: '',
         }
     }
-    handleOnChangeEmail = (event)=>{
+    handleOnChangeEmail = (event) => {
         this.setState({
             email: event.target.value,
         })
     }
 
-    handleOnChangePassword = (event)=>{
+    handleOnChangePassword = (event) => {
         this.setState({
             password: event.target.value,
         })
     }
-    handleLogin=async()=>{
+
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            this.handleLogin();
+        }
+    }
+    handleLogin = async () => {
         this.setState({
             errMessage: ''
         })
-        
-        try{
+
+        try {
             let data = await handleLoginApi(this.state.email, this.state.password)
-            if(data && data.errCode!=0){
+            if (data && data.errCode != 0) {
                 this.setState({
                     errMessage: data.message
-                    
+
                 })
             }
-            if(data && data.errCode===0){
+            if (data && data.errCode === 0) {
                 console.log(data)
                 this.props.userLoginSuccess(data.user)
-                
+
             }
-        }catch(error){
-            if(error.response){
-                if(error.response.data){
+        } catch (error) {
+            if (error.response) {
+                if (error.response.data) {
                     this.setState({
                         errMessage: error.response.data.message
                     })
                 }
-           }
+            }
         }
     }
-    handleShowHidePassword=(event)=>{
+    handleShowHidePassword = (event) => {
         this.setState({
             isshowpassword: !this.state.isshowpassword
         })
     }
     render() {
         return (
-           <div className='login-background'>
+            <div className='login-background'>
                 <div className='login-container'>
                     <div className='login-content row'>
                         <div className='col-12 login-text'>Login</div>
                         <div className='col-12 form-group login-input'>
                             <label>Email</label>
-                            <input type='email' 
-                                className='form-control' 
-                                placeholder='Enter your email' 
+                            <input type='email'
+                                className='form-control'
+                                placeholder='Enter your email'
                                 value={this.state.email}
-                                onChange = {(event)=>this.handleOnChangeEmail(event)}
+                                onChange={(event) => this.handleOnChangeEmail(event)}
                                 name='email'>
                             </input>
                         </div>
                         <div className='col-12 form-group login-input'>
                             <label>Password</label>
                             <div className='custom-ipnut-password'>
-                                <input type={this.state.isshowpassword?'text':'password'}
-                                    className='form-control' 
-                                    placeholder='Enter your password' 
+                                <input type={this.state.isshowpassword ? 'text' : 'password'}
+                                    className='form-control'
+                                    placeholder='Enter your password'
                                     value={this.state.password}
-                                    onChange = {(event)=>this.handleOnChangePassword(event)}
-                                    name='password'>
-                                    </input>
-                                    <span onClick={(event)=>this.handleShowHidePassword(event)}> <i className={this.state.isshowpassword?'fas fa-eye':'fas fa-eye-slash'}></i></span>
-                                   
-                          </div> 
+                                    onChange={(event) => this.handleOnChangePassword(event)}
+                                    name='password'
+                                    onKeyDown={(event) => this.handleKeyDown(event)}>
+                                </input>
+                                <span onClick={(event) => this.handleShowHidePassword(event)}> <i className={this.state.isshowpassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i></span>
+
+                            </div>
                         </div>
-                        <div className='col-12' style={{color: 'red'}}>
+                        <div className='col-12' style={{ color: 'red' }}>
                             {this.state.errMessage}
                         </div>
                         <div className='col-12'>
                             <button className='btn-login'
-                            onClick={()=> this.handleLogin()}>Login</button>
+                                onClick={() => this.handleLogin()}>Login</button>
                         </div>
                         <div className='col-12'>
                             <span className='fogot-password'>Forgot your password ?</span>
@@ -109,7 +116,7 @@ class Login extends Component {
                         </div>
                     </div>
                 </div>
-           </div>
+            </div>
         )
     }
 }
@@ -124,7 +131,7 @@ const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
         //adminLoginFail: () => dispatch(actions.adminLoginFail()),
-        userLoginSuccess: (userInfo)=>dispatch(actions.userLoginSuccess(userInfo))
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };
 
