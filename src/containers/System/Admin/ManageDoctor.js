@@ -29,7 +29,9 @@ class ManageDoctor extends Component {
             contentMarkdown: '',
             selectedDoctor: '',
             description: '',
-            alldoctors: []
+            alldoctors: [],
+            doctorinfor: {},
+            isEdit: false
         }
     }
 
@@ -53,14 +55,44 @@ class ManageDoctor extends Component {
             })
         }
 
+        if (prevProps.detailDoctorRedux !== this.props.detailDoctorRedux) {
+            let infordoctor = this.props.detailDoctorRedux
+            if (infordoctor && infordoctor.Markdown.contentHTML && infordoctor.Markdown.contentMarkdown
+                && infordoctor.Markdown.description) {
+                this.setState({
+                    contentHTML: infordoctor.Markdown.contentHTML,
+                    contentMarkdown: infordoctor.Markdown.contentMarkdown,
+                    description: infordoctor.Markdown.description,
+                    isEdit: true
+                })
+            } else {
+                this.setState({
+                    contentHTML: '',
+                    contentMarkdown: '',
+                    description: '',
+                    isEdit: false
+                })
+            }
+        }
+
+
     }
 
     handleSaveContentMarkdown = () => {
+        let isEdit = this.state.isEdit;
         this.props.saveDetailDoctorRedux({
             contentHTML: this.state.contentHTML,
             contentMarkdown: this.state.contentMarkdown,
             description: this.state.description,
-            doctorid: this.state.selectedDoctor.value
+            doctorid: this.state.selectedDoctor.value,
+            action: isEdit === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE
+        })
+        this.setState({
+            contentHTML: '',
+            contentMarkdown: '',
+            description: '',
+            selectedDoctor: '',
+            isEdit: false
         })
     }
 
@@ -73,6 +105,7 @@ class ManageDoctor extends Component {
     }
 
     handleChange = (selectedDoctor) => {
+        this.props.fetchInforDoctorRedux(selectedDoctor.value)
         this.setState({
             selectedDoctor: selectedDoctor
         });
@@ -102,6 +135,7 @@ class ManageDoctor extends Component {
     }
     render() {
 
+        let isEdit = this.state.isEdit
         return (
 
             <React.Fragment>
@@ -116,6 +150,7 @@ class ManageDoctor extends Component {
                                 value={this.state.selectedDoctor}
                                 onChange={this.handleChange}
                                 options={this.state.alldoctors}
+
                             />
                         </div>
                         <div className='content-right'>
@@ -124,18 +159,19 @@ class ManageDoctor extends Component {
                                 onChange={(event) => { this.handbleOnChangeDesc(event) }}
                                 value={this.state.description}
                                 className='form-control' rows='4'>
-                                Text
                             </textarea>
 
                         </div>
                     </div>
                     <div className='manage-doctor-editor'>
                         <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChange} />
+                            onChange={this.handleEditorChange}
+                            value={this.state.contentMarkdown} />
                     </div>
                     <button
                         onClick={() => { this.handleSaveContentMarkdown() }}
-                        className='save-content-doctor'>Lưu thông tin</button>
+                        className={isEdit === false ? 'save-content-doctor' : 'edit-infordoctor'}>
+                        {isEdit === false ? <span>Lưu thông tin</span> : <span> Sửa thông tin</span>} </button>
                 </div >
 
             </React.Fragment>
@@ -147,15 +183,16 @@ class ManageDoctor extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        doctorstoRedux: state.admin.alldoctors
+        doctorstoRedux: state.admin.alldoctors,
+        detailDoctorRedux: state.admin.detaildoctor,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchDoctorRedux: () => dispatch(actions.fetchAllDoctorStart()),
-        saveDetailDoctorRedux: (data) => dispatch(actions.saveDetailDoctor(data))
-
+        saveDetailDoctorRedux: (data) => dispatch(actions.saveDetailDoctor(data)),
+        fetchInforDoctorRedux: (id) => dispatch(actions.fetchInforDoctorStart(id)),
     };
 };
 

@@ -15,7 +15,7 @@
         outline: none;
         border: none;
         padding: 5px;
-        background: orange;
+        background: greenyellow;
         cursor: pointer;
 
         &:hover{
@@ -23,6 +23,20 @@
          }
     }
      
+    .edit-infordoctor{
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border-radius: 3px;
+        outline: none;
+        border: none;
+        padding: 5px;
+        background: orange;
+        cursor: pointer;
+
+        &:hover{
+            opacity: 0.9;
+         }
+    }
 
     .more-infor{
         display: flex;

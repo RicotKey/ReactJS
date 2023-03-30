@@ -51,7 +51,7 @@ class DetailDoctor extends Component {
             nameVi = `${doctor.positionData.valueVi}, ${doctor.lastName} ${doctor.firstName}`
             nameEn = `${doctor.positionData.valueEn}, ${doctor.firstName} ${doctor.lastName}`
         }
-        console.log("check detail: ", this.state)
+
         return (
             <React.Fragment>
                 <HomeHeader isShowBanner={false} />
@@ -76,6 +76,7 @@ class DetailDoctor extends Component {
                             <div dangerouslySetInnerHTML={{ __html: doctor.Markdown.contentHTML }}></div>
                         }
                     </div>
+                    <div className='comment-doctor'></div>
                 </div>
 
             </React.Fragment>
