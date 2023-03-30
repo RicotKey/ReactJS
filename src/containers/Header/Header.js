@@ -3,36 +3,61 @@ import { connect } from 'react-redux';
 
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
-import {LANGUAGE} from '../../utils'
-import {FormattedMessage} from 'react-intl'
+import { adminMenu, doctorMenu } from './menuApp';
+import { LANGUAGE, USER_ROLE } from '../../utils'
+import { FormattedMessage } from 'react-intl'
 import './Header.scss';
-
+import _ from 'lodash'
 class Header extends Component {
 
-    changelanguage =(language) =>{
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuApp: []
+        }
+    }
+    changelanguage = (language) => {
         this.props.changelanguageAppbyRedux(language)
     }
 
+    componentDidMount() {
+        let { userInfo } = this.props;
+        console.log("ckeck", this.props.userInfo)
+        let menu = []
+        if (userInfo && !_.isEmpty(userInfo)) {
+            let role = userInfo.roleid;
+            if (role === USER_ROLE.ADMIN) {
+                menu = adminMenu
+            }
+            if (role === USER_ROLE.DOCTOR) {
+                menu = doctorMenu
+            }
+
+        }
+
+        this.setState({
+            menuApp: menu
+        })
+    }
     render() {
-        const { processLogout,language,userInfo } = this.props;
-      
+        const { processLogout, language, userInfo } = this.props;
+
         return (
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menuApp} />
                 </div>
                 <div className='language'>
-                        <span className='welcome'><FormattedMessage id='homeheader.welcome'/> {userInfo && userInfo.firstName ? userInfo.firstName : ''} !</span>
-                        <span className={language === LANGUAGE.VI ? 'language-vi active': 'language-vi'}><span onClick={()=>{this.changelanguage(LANGUAGE.VI)}}>VN</span></span>
-                        <span className={language === LANGUAGE.EN ? 'language-en active': 'language-en'}><span onClick={()=>{this.changelanguage(LANGUAGE.EN)}}>EN</span></span>
-                     {/* nút logout */}
+                    <span className='welcome'><FormattedMessage id='homeheader.welcome' /> {userInfo && userInfo.firstName ? userInfo.firstName : ''} !</span>
+                    <span className={language === LANGUAGE.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => { this.changelanguage(LANGUAGE.VI) }}>VN</span></span>
+                    <span className={language === LANGUAGE.EN ? 'language-en active' : 'language-en'}><span onClick={() => { this.changelanguage(LANGUAGE.EN) }}>EN</span></span>
+                    {/* nút logout */}
                     <div className="btn btn-logout" onClick={processLogout}>
                         <i className="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
-               
+
             </div>
         );
     }
@@ -42,15 +67,15 @@ class Header extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language,    
-        userInfo: state.user.userInfo   
+        language: state.app.language,
+        userInfo: state.user.userInfo
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         processLogout: () => dispatch(actions.processLogout()),
-        changelanguageAppbyRedux: (language) =>dispatch(actions.changelanguageApp(language))
+        changelanguageAppbyRedux: (language) => dispatch(actions.changelanguageApp(language))
     };
 };
 
