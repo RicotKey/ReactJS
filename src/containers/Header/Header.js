@@ -22,7 +22,7 @@ class Header extends Component {
 
     componentDidMount() {
         let { userInfo } = this.props;
-        console.log("ckeck", this.props.userInfo)
+
         let menu = []
         if (userInfo && !_.isEmpty(userInfo)) {
             let role = userInfo.roleid;

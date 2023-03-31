@@ -5,6 +5,7 @@ import './DetailDoctor.scss'
 import * as actions from '../../../store/actions'
 import { result } from 'lodash';
 import { LANGUAGE } from '../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 class DetailDoctor extends Component {
     constructor(props) {
         super(props)
@@ -70,7 +71,11 @@ class DetailDoctor extends Component {
                             }</div>
                         </div>
                     </div>
-                    <div className='schedule-doctor'></div>
+                    <div className='schedule-doctor'>
+                        <div className='content-left'>
+                            <DoctorSchedule doctoridFromParent={doctor && doctor.id ? doctor.id : -1} />
+                        </div>
+                    </div>
                     <div className='detail-infor-doctor'>
                         {doctor && doctor.Markdown && doctor.Markdown.contentHTML &&
                             <div dangerouslySetInnerHTML={{ __html: doctor.Markdown.contentHTML }}></div>

@@ -73,7 +73,8 @@ class ManageSchedule extends Component {
 
         // let formateDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
         let formateDate = new Date(currentDate).getTime();
-        if (formateDate === "Invalid date") {
+
+        if (!formateDate) {
             toast.error("Date Missing!")
             return;
         }
@@ -92,14 +93,14 @@ class ManageSchedule extends Component {
                 return;
             }
         }
-
         let res = await saveBulkScheduleDoctor({
             arrSchedule: result,
             doctorid: selectedDoctor.value,
             formatedDate: formateDate
         })
-
-        console.log("Check:", result)
+        if (res.errCode === 0) {
+            toast.success("Save Schedule Success")
+        }
     }
 
     builDataInputSelect = (inputData) => {
@@ -116,8 +117,8 @@ class ManageSchedule extends Component {
                 result.push(object)
             })
         }
-
         return result;
+
     }
 
 
