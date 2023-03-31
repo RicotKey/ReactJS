@@ -11,7 +11,7 @@ class DetailDoctor extends Component {
         super(props)
         this.state = {
             detailDoctor: {},
-
+            currentDoctorid: -1
         }
     }
 
@@ -19,6 +19,9 @@ class DetailDoctor extends Component {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id
             this.props.fetchInforDoctorRedux(id)
+            this.setState({
+                currentDoctorid: id
+            })
         }
     }
     // if (user.image) {
@@ -73,7 +76,7 @@ class DetailDoctor extends Component {
                     </div>
                     <div className='schedule-doctor'>
                         <div className='content-left'>
-                            <DoctorSchedule doctoridFromParent={doctor && doctor.id ? doctor.id : -1} />
+                            <DoctorSchedule doctoridFromParent={this.state.currentDoctorid} />
                         </div>
                     </div>
                     <div className='detail-infor-doctor'>
