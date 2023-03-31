@@ -6,6 +6,7 @@ import * as actions from '../../../store/actions'
 import { result } from 'lodash';
 import { LANGUAGE } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import DoctorExtraInfor from './DoctorExtraInfor';
 class DetailDoctor extends Component {
     constructor(props) {
         super(props)
@@ -77,6 +78,9 @@ class DetailDoctor extends Component {
                     <div className='schedule-doctor'>
                         <div className='content-left'>
                             <DoctorSchedule doctoridFromParent={this.state.currentDoctorid} />
+                        </div>
+                        <div className='content-right'>
+                            <DoctorExtraInfor doctoridFromParent={this.state.currentDoctorid} />
                         </div>
                     </div>
                     <div className='detail-infor-doctor'>

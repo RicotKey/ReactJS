@@ -66,18 +66,62 @@ class ManageDoctor extends Component {
             let infordoctor = this.props.detailDoctorRedux
             if (infordoctor && infordoctor.Markdown.contentHTML && infordoctor.Markdown.contentMarkdown
                 && infordoctor.Markdown.description) {
-                this.setState({
-                    contentHTML: infordoctor.Markdown.contentHTML,
-                    contentMarkdown: infordoctor.Markdown.contentMarkdown,
-                    description: infordoctor.Markdown.description,
-                    isEdit: true
-                })
+                let { listPrice, listPayment, listProvince } = this.state
+                if (infordoctor.Doctor_Infor) {
+                    let priceid = infordoctor.Doctor_Infor.priceid
+                    let paymentid = infordoctor.Doctor_Infor.paymentid
+                    let provinceid = infordoctor.Doctor_Infor.provinceid
+                    let nameClinic = infordoctor.Doctor_Infor.nameClinic
+                    let addressClinic = infordoctor.Doctor_Infor.addressClinic
+                    let note = infordoctor.Doctor_Infor.note
+
+                    let selectedPrice = listPrice.find(item => {
+                        return item && item.value === priceid
+                    })
+
+                    let selectedPayment = listPayment.find(item => {
+                        return item && item.value === paymentid
+                    })
+
+
+                    let selectedProvince = listProvince.find(item => {
+                        return item && item.value === provinceid
+                    })
+                    this.setState({
+                        contentHTML: infordoctor.Markdown.contentHTML,
+                        contentMarkdown: infordoctor.Markdown.contentMarkdown,
+                        description: infordoctor.Markdown.description,
+                        isEdit: true,
+
+                        addressClinic: addressClinic,
+                        nameClinic: nameClinic,
+                        note: note,
+                        selectedPayment: selectedPayment,
+                        selectedPrice: selectedPrice,
+                        selectedProvince: selectedProvince
+
+                    })
+                } else {
+                    this.setState({
+                        addressClinic: '',
+                        nameClinic: '',
+                        note: '',
+                        selectedPayment: '',
+                        selectedPrice: '',
+                        selectedProvince: ''
+                    })
+                }
+
+
             } else {
                 this.setState({
                     contentHTML: '',
                     contentMarkdown: '',
                     description: '',
-                    isEdit: false
+                    isEdit: false,
+                    addressClinic: '',
+                    nameClinic: '',
+                    note: ''
                 })
             }
         }
