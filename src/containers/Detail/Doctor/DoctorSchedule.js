@@ -110,6 +110,7 @@ class DoctorSchedule extends Component {
     render() {
 
         let { allDays, allAvalableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
+
         let { language } = this.props;
         return (
             <React.Fragment>
