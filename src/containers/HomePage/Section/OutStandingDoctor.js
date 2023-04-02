@@ -40,8 +40,8 @@ class OutStandingDoctor extends Component {
             <div className='section-share section-outstanding-doctor'>
                 <div className='section-container'>
                     <div className='section-header'>
-                        <span className='title-section'><FormattedMessage id='homepage.outstandingdoctor.outstandingdoctor' /></span>
-                        <button className='btn-section'><FormattedMessage id='homepage.outstandingdoctor.more-infor' /></button>
+                        <span className='title-section'><FormattedMessage id='homepage.outstandingdoctor' /></span>
+                        <button className='btn-section'><FormattedMessage id='homepage.more-infor' /></button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
