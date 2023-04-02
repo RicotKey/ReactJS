@@ -38,7 +38,7 @@
         },
         "doctor": {
             "doctor": "Doctor",
-            "mange-schedule": "Manage schedule"
+            "manage-schedule": "Manage schedule"
         }
     },
     "manage": {
@@ -65,7 +65,8 @@
     "homepage": {
         "outstandingdoctor": "Outstanding doctors last week",
         "more-infor": "More",
-        "specialty-popluar": "Poplular specialties"
+        "specialty-popluar": "Poplular specialties",
+        "medicalFacility": "Medical Facility"
     },
     "manage-schedule": {
         "title": "Manage doctor's examination plan",

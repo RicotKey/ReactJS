@@ -74,7 +74,7 @@ class ManageDoctor extends Component {
             let infordoctor = this.props.detailDoctorRedux
             if (infordoctor && infordoctor.Markdown.contentHTML && infordoctor.Markdown.contentMarkdown
                 && infordoctor.Markdown.description) {
-                let { listPrice, listPayment, listProvince, listSpecialty } = this.state
+                let { listPrice, listPayment, listProvince, listSpecialty, listClinic } = this.state
                 if (infordoctor.Doctor_Infor) {
                     let priceid = infordoctor.Doctor_Infor.priceid
                     let paymentid = infordoctor.Doctor_Infor.paymentid
@@ -83,6 +83,7 @@ class ManageDoctor extends Component {
                     let addressClinic = infordoctor.Doctor_Infor.addressClinic
                     let note = infordoctor.Doctor_Infor.note
                     let specialtyid = infordoctor.Doctor_Infor.specialtyid;
+                    let clinicid = infordoctor.Doctor_Infor.clinicid;
 
                     let selectedPrice = listPrice.find(item => {
                         return item && item.value === priceid
@@ -100,6 +101,10 @@ class ManageDoctor extends Component {
                         return item && item.value === specialtyid
                     })
 
+                    let selectedClinic = listClinic.find(item => {
+                        return item && item.value === clinicid
+                    })
+
                     this.setState({
                         contentHTML: infordoctor.Markdown.contentHTML,
                         contentMarkdown: infordoctor.Markdown.contentMarkdown,
@@ -112,7 +117,8 @@ class ManageDoctor extends Component {
                         selectedPayment: selectedPayment,
                         selectedPrice: selectedPrice,
                         selectedProvince: selectedProvince,
-                        selectedSpecialty: selectedSpecialty
+                        selectedSpecialty: selectedSpecialty,
+                        selectedClinic: selectedClinic
                     })
                 } else {
                     this.setState({
@@ -122,7 +128,8 @@ class ManageDoctor extends Component {
                         selectedPayment: '',
                         selectedPrice: '',
                         selectedProvince: '',
-                        selectedSpecialty: ''
+                        selectedSpecialty: '',
+                        selectedClinic: ''
                     })
                 }
 
@@ -141,18 +148,20 @@ class ManageDoctor extends Component {
         }
 
         if (prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor) {
-            let { resPayment, resPrice, resProvince, resSpecialty } = this.props.allRequiredDoctorInfor;
+            let { resPayment, resPrice, resProvince, resSpecialty, resClinic } = this.props.allRequiredDoctorInfor;
 
             let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE');
             let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT');
             let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
             let dataSelectSpecialty = this.buildDataInputSelect(resSpecialty, 'SPECIALTY');
+            let dataSelectClinic = this.buildDataInputSelect(resClinic, 'CLINIC');
 
             this.setState({
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
                 listProvince: dataSelectProvince,
-                listSpecialty: dataSelectSpecialty
+                listSpecialty: dataSelectSpecialty,
+                listClinic: dataSelectClinic,
             })
         }
 
@@ -274,6 +283,15 @@ class ManageDoctor extends Component {
             }
 
             if (type === 'SPECIALTY') {
+                input.map((item, index) => {
+                    let object = {};
+                    object.label = item.name;
+                    object.value = item.id;
+                    result.push(object)
+                })
+            }
+
+            if (type === 'CLINIC') {
                 input.map((item, index) => {
                     let object = {};
                     object.label = item.name;
