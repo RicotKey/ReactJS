@@ -7,6 +7,7 @@ import TableManageUser from '../containers/System/Admin/TableManageUser';
 import Header from '../containers/Header/Header';
 import ManageDoctor from '../containers/System/Admin/ManageDoctor';
 import ManageSpecialty from '../containers/System/Specialty/ManageSpecialty';
+import ManageClinic from '../containers/System/Clinic/ManageClinic';
 class System extends Component {
     render() {
         // {this.props.isLoggedIn && <Header />}
@@ -21,7 +22,9 @@ class System extends Component {
                             <Route path="/system/user-redux" component={UserRedux} />
                             <Route path="/system/list-user" component={TableManageUser} />
                             <Route path="/system/manage-specialty" component={ManageSpecialty} />
+                            <Route path="/system/manage-clinic" component={ManageClinic} />
                             <Route path="/system/manage-doctor" component={ManageDoctor} />
+
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>
                     </div>

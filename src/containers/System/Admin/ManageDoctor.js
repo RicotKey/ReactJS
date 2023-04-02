@@ -74,7 +74,7 @@ class ManageDoctor extends Component {
             let infordoctor = this.props.detailDoctorRedux
             if (infordoctor && infordoctor.Markdown.contentHTML && infordoctor.Markdown.contentMarkdown
                 && infordoctor.Markdown.description) {
-                let { listPrice, listPayment, listProvince } = this.state
+                let { listPrice, listPayment, listProvince, listSpecialty } = this.state
                 if (infordoctor.Doctor_Infor) {
                     let priceid = infordoctor.Doctor_Infor.priceid
                     let paymentid = infordoctor.Doctor_Infor.paymentid
@@ -82,6 +82,7 @@ class ManageDoctor extends Component {
                     let nameClinic = infordoctor.Doctor_Infor.nameClinic
                     let addressClinic = infordoctor.Doctor_Infor.addressClinic
                     let note = infordoctor.Doctor_Infor.note
+                    let specialtyid = infordoctor.Doctor_Infor.specialtyid;
 
                     let selectedPrice = listPrice.find(item => {
                         return item && item.value === priceid
@@ -91,23 +92,27 @@ class ManageDoctor extends Component {
                         return item && item.value === paymentid
                     })
 
-
                     let selectedProvince = listProvince.find(item => {
                         return item && item.value === provinceid
                     })
+
+                    let selectedSpecialty = listSpecialty.find(item => {
+                        return item && item.value === specialtyid
+                    })
+
                     this.setState({
                         contentHTML: infordoctor.Markdown.contentHTML,
                         contentMarkdown: infordoctor.Markdown.contentMarkdown,
                         description: infordoctor.Markdown.description,
                         isEdit: true,
 
-                        addressClinic: addressClinic,
-                        nameClinic: nameClinic,
-                        note: note,
+                        addressClinic: addressClinic ? addressClinic : '',
+                        nameClinic: nameClinic ? nameClinic : '',
+                        note: note ? note : '',
                         selectedPayment: selectedPayment,
                         selectedPrice: selectedPrice,
-                        selectedProvince: selectedProvince
-
+                        selectedProvince: selectedProvince,
+                        selectedSpecialty: selectedSpecialty
                     })
                 } else {
                     this.setState({
@@ -116,7 +121,8 @@ class ManageDoctor extends Component {
                         note: '',
                         selectedPayment: '',
                         selectedPrice: '',
-                        selectedProvince: ''
+                        selectedProvince: '',
+                        selectedSpecialty: ''
                     })
                 }
 
@@ -167,7 +173,7 @@ class ManageDoctor extends Component {
         }
     }
 
-    handleSaveContentMarkdown = () => {
+    handleSaveContentMarkdown = async () => {
         let isEdit = this.state.isEdit;
         this.props.saveDetailDoctorRedux({
             contentHTML: this.state.contentHTML,
@@ -176,14 +182,14 @@ class ManageDoctor extends Component {
             doctorid: this.state.selectedDoctor.value,
             action: isEdit === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
 
-            selectedPrice: this.state.selectedPrice.value,
-            selectedPayment: this.state.selectedPayment.value,
-            selectedProvince: this.state.selectedProvince.value,
+            selectedPrice: this.state.selectedPrice && this.state.selectedPrice.value ? this.state.selectedPrice.value : '',
+            selectedPayment: this.state.selectedPayment && this.state.selectedPayment.value ? this.state.selectedPayment.value : '',
+            selectedProvince: this.state.selectedProvince && this.state.selectedProvince.value ? this.state.selectedProvince.value : '',
             nameClinic: this.state.nameClinic,
             addressClinic: this.state.addressClinic,
             note: this.state.note,
             clinicid: this.state.selectedClinic && this.state.selectedClinic.value ? this.state.selectedClinic.value : '',
-            specialtyid: this.state.selectedSpecialty.value
+            specialtyid: this.state.selectedSpecialty && this.state.selectedSpecialty.value ? this.state.selectedSpecialty.value : '',
 
         })
     }
