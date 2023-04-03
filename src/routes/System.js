@@ -18,10 +18,11 @@ class System extends Component {
                 <div className="system-container">
                     <div className="system-list">
                         <Switch>
-                            <Route path="/system/user-manage" component={UserManage} />
-                            <Route path="/system/user-redux" component={UserRedux} />
-                            <Route path="/system/list-user" component={TableManageUser} />
                             <Route path="/system/manage-specialty" component={ManageSpecialty} />
+
+                            <Route path="/system/user-manage" component={UserRedux} />
+                            <Route path="/system/list-user" component={TableManageUser} />
+
                             <Route path="/system/manage-clinic" component={ManageClinic} />
                             <Route path="/system/manage-doctor" component={ManageDoctor} />
 

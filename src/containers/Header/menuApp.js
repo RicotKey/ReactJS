@@ -2,29 +2,28 @@ export const adminMenu = [
     { //manage-user
         name: 'menu.admin.manage-user',
         menus: [
+
             {
-                name: 'menu.admin.crud', link: '/system/user-manage'
+                name: 'menu.admin.crud-redux', link: '/system/user-manage'
             },
             {
-                name: 'menu.admin.crud-redux', link: '/system/user-redux'
+                name: 'menu.admin.list-user', link: '/system/list-user'
             },
             {
                 name: 'menu.admin.manage-doctor', link: '/system/manage-doctor'
                 // subMenus: [
                 //     { name: 'menu.system.system-administrator.user-manage', link: '/system/user-manage' },
-                //     { name: 'menu.system.system-administrator.user-redux', link: '/system/user-redux' },
+                //     { name: 'menu.system.system-administrator.user-redux', link: '/system/user-manage' },
 
                 // ]
             },
             { //manage-user
 
-                name: 'menu.doctor.mangae-schedule', link: '/doctor/manage-schedule'
+                name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule'
 
 
             },
-            {
-                name: 'menu.admin.list-user', link: '/system/list-user'
-            }
+
             // { name: 'menu.system.system-parameter.header', link: '/system/system-parameter' },
         ]
     },
@@ -65,7 +64,7 @@ export const doctorMenu = [
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule'
             },
             {
-                name: 'menu.doctor.manege.patient', link: '/doctor/manage-patient'
+                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient'
             }
 
         ]

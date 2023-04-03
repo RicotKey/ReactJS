@@ -49,7 +49,13 @@ class Login extends Component {
                 })
             }
             if (data && data.errCode === 0) {
-                console.log(data)
+                console.log(data.user.roleid)
+                if (data.user.roleid == 'R2') {
+                    this.props.navigate('/doctor/manage-patient')
+                }
+                if (data.user.roleid == 'R1') {
+                    this.props.navigate('/system/list-user')
+                }
                 this.props.userLoginSuccess(data.user)
 
             }

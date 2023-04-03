@@ -24,13 +24,13 @@
     "menu": {
         "admin": {
             "manage-user": "Users System",
-            "manage-doctor": "Manage doctors",
+            "manage-doctor": "Add Doctor's Infor",
             "manage-admin": "Manage admins",
             "crud": "CRUD user",
-            "crud-redux": "CRUD Redux",
+            "crud-redux": "Create New User",
             "list-user": "List Users",
             "clinic": "Clinics",
-            "manage-clinic": "Manage clinics",
+            "manage-clinic": "Create New Clinic",
             "specialty": "Specialties",
             "manage-specialty": "Manage specialties",
             "handbook": "Handbooks",
@@ -38,7 +38,8 @@
         },
         "doctor": {
             "doctor": "Doctor",
-            "manage-schedule": "Manage schedule"
+            "manage-schedule": "Add Doctor's schedule",
+            "manage-patient": "Manage Doctor's patient"
         }
     },
     "manage": {

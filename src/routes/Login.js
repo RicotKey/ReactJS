@@ -11,6 +11,7 @@ import './Login.scss';
 import { FormattedMessage } from 'react-intl';
 
 import adminService from '../services/adminService';
+import { thru } from 'lodash';
 
 class Login extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class Login extends Component {
 
     redirectToSystemPage = () => {
         const { navigate } = this.props;
-        const redirectPath = '/system/user-manage';
+        let { user } = this.props;
         navigate(`${redirectPath}`);
     }
 
@@ -158,7 +159,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        lang: state.app.language
+        lang: state.app.language,
+
     };
 };
 
