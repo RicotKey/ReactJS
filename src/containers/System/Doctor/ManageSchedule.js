@@ -200,7 +200,8 @@ const mapStateToProps = state => {
     return {
         language: state.app.language,
         allDoctors: state.admin.alldoctors,
-        allScheduleTime: state.admin.allScheduleTime
+        allScheduleTime: state.admin.allScheduleTime,
+
     };
 };
 

@@ -19,7 +19,8 @@
         "text-child3": "Medical test",
         "text-child4": "General examination",
         "text-child5": "Mental health",
-        "text-child6": "Dental examination"
+        "text-child6": "Dental examination",
+        "find-doctor": "Search Doctor"
     },
     "menu": {
         "admin": {
@@ -64,7 +65,7 @@
         }
     },
     "homepage": {
-        "outstandingdoctor": "Outstanding doctors last week",
+        "outstandingdoctor": "New doctors",
         "more-infor": "More",
         "specialty-popluar": "Poplular specialties",
         "medicalFacility": "Medical Facility"
@@ -119,6 +120,15 @@
             "note": "Note",
             "specialty": "Specialty",
             "select-clinic": "Clinic"
+        },
+        "manage-patient": {
+            "manage-patient": "Manage patient",
+            "chooseday": "Choose day",
+            "time": "Time",
+            "fullname": "FullName",
+            "phonenumber": "Phone Number",
+            "gender": "Gender",
+            "actions": "Actions"
         }
     }
 }

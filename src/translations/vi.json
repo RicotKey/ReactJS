@@ -19,7 +19,8 @@
         "text-child3": "Xét nghiệm y khoa",
         "text-child4": "Khám tổng quát",
         "text-child5": "Sức khỏe tinh thần",
-        "text-child6": "Khám nha khoa"
+        "text-child6": "Khám nha khoa",
+        "find-doctor": "Tìm bác sĩ"
     },
     "menu": {
         "admin": {
@@ -65,7 +66,7 @@
         }
     },
     "homepage": {
-        "outstandingdoctor": "Bác sĩ nổi bật tuần qua",
+        "outstandingdoctor": "Bác sĩ mới",
         "more-infor": "Xem thêm",
         "specialty-popluar": "Chuyên khoa phổ biến",
         "medicalFacility": "Cơ sở y tế nổi bật"
@@ -120,6 +121,15 @@
             "note": "Ghi chú",
             "specialty": "Chọn chuyên khoa",
             "select-clinic": "Chọn phòng khám"
+        },
+        "manage-patient": {
+            "manage-patient": "Quản lý bệnh nhân",
+            "chooseday": "Xem ngày",
+            "time": "Thời gian",
+            "fullname": "Họ và tên",
+            "phonenumber": "Số điện thoại",
+            "gender": "Giới tính",
+            "actions": "Chức năng"
         }
     }
 }

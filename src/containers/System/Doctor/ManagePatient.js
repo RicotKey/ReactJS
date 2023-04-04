@@ -124,11 +124,11 @@ class ManagePatient extends Component {
                     text='Loading...'>
                     <div className='manage-patient-container'>
                         <div className='m-p-title'>
-                            Quản lý bệnh nhân khám bệnh
+                            <FormattedMessage id='admin.manage-patient.manage-patient' />
                         </div>
                         <div className='manage-patient-body row'>
                             <div className='col-4 form-group'>
-                                <label>Chọn ngày khám</label>
+                                <label> <FormattedMessage id='admin.manage-patient.chooseday' /></label>
                                 <DatePicker
                                     onChange={this.handleOnchangeDatePicker}
                                     className="form-control"
@@ -140,11 +140,11 @@ class ManagePatient extends Component {
                                     <tbody>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Thời gian</th>
-                                            <th>Họ và tên</th>
-                                            <th>Số điện thoại</th>
-                                            <th>Giới tính</th>
-                                            <th>Actions</th>
+                                            <th><FormattedMessage id='admin.manage-patient.fullname' /></th>
+                                            <th><FormattedMessage id='admin.manage-patient.time' /></th>
+                                            <th><FormattedMessage id='admin.manage-patient.phonenumber' /></th>
+                                            <th><FormattedMessage id='admin.manage-patient.gender' /></th>
+                                            <th><FormattedMessage id='admin.manage-patient.actions' /></th>
                                         </tr>
                                         {dataPatient && dataPatient.length > 0
                                             ? dataPatient.map((item, index) => {
@@ -158,7 +158,7 @@ class ManagePatient extends Component {
                                                         <td>{item.timeTypeDataPatient.valueVi}</td>
                                                         <td>{item.patientData.firstName}</td>
                                                         <td>{item.patientData.phonenumber}</td>
-                                                        <td>{item.patientData.genderData.valueVi}</td>
+                                                        <td>{gender}</td>
                                                         <td>
                                                             <button className='mp-btn-confirm'
                                                                 onClick={() => this.handleBtnConfirm(item)}

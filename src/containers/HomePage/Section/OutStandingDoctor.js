@@ -67,7 +67,7 @@ class OutStandingDoctor extends Component {
 
                                             <div className='positon text-center'>
                                                 <div>{language === LANGUAGE.VI ? nameVi : nameEn}</div>
-                                                <div>Khoa nhi đồng</div>
+                                                <div style={{ color: 'green' }}>Online</div>
                                             </div>
                                         </div>
                                     </div>

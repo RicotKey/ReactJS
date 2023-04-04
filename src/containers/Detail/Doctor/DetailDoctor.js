@@ -12,7 +12,8 @@ class DetailDoctor extends Component {
         super(props)
         this.state = {
             detailDoctor: {},
-            currentDoctorid: -1
+            currentDoctorid: -1,
+
         }
     }
 
@@ -58,7 +59,8 @@ class DetailDoctor extends Component {
         }
 
         return (
-            <React.Fragment>
+            <>
+
                 <HomeHeader isShowBanner={false} />
                 <div className='doctor-detail-container'>
                     <div className='intro-doctor'>
@@ -91,7 +93,7 @@ class DetailDoctor extends Component {
                     <div className='comment-doctor'></div>
                 </div>
 
-            </React.Fragment>
+            </>
         );
     }
 }
