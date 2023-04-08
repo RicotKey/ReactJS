@@ -45,7 +45,7 @@
     },
     "manage": {
         "user": {
-            "title": "Create new user by redux",
+            "title": "Create new user",
             "subtitle": "Enter information",
             "email": "Email",
             "password": "Password",

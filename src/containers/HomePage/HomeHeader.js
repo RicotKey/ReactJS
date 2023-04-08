@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/logohutech.png"
 import { FormattedMessage } from 'react-intl'
 import { LANGUAGE } from '../../utils'
 import { changelanguageApp } from '../../store/actions'

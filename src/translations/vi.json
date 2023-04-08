@@ -45,7 +45,7 @@
     },
     "manage": {
         "user": {
-            "title": " Thêm mới người dùng by Redux",
+            "title": " Thêm mới người dùng",
             "subtitle": "Nhập thông tin",
             "email": "Email",
             "password": "Mật khẩu",
